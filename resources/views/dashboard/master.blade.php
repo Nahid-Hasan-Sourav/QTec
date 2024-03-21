@@ -9,7 +9,10 @@
  {{-- ajax meta token start here --}}
  <meta name="csrf-token" content="{{ csrf_token() }}">
  {{-- ajax meta token start here --}}
-
+ 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>@yield('title')</title>
 

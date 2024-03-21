@@ -17,6 +17,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/notes', [NotesController::class, 'index'])->name('notes');
+    Route::get('/get/note', [NotesController::class, 'getAllNote'])->name('notes.getAll');
+
+    Route::post('/note/store', [NotesController::class, 'store'])->name('notes.store');
+    Route::get('/note/edit/{id}', [NotesController::class, 'edit'])->name('notes.edit');
+    Route::post('/note/update', [NotesController::class, 'update'])->name('notes.update');
+    Route::get('/note/delete/{id}', [NotesController::class, 'destroy'])->name('notes.destroy');
+
+
+
+
 
 
 });
