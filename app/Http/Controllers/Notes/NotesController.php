@@ -14,16 +14,23 @@ class NotesController extends Controller
         return view('dashboard.notes.index');
     }
 
-    public function getAllNote(){
-        $userId = auth()->user()->id;
+    public function getAllNote(Request $request){
 
-        $allNotes = Note::where('user_id',$userId)->get();
+        $userId = auth()->user()->id;
+        $allNotes = Note::where('user_id', $userId);
+
+        if (!empty($request->searchValue)) {
+            $allNotes = $allNotes->where('title', 'like', '%' . $request->searchValue . '%');
+        }
+
+        $allNotes = $allNotes->get();
 
         return response()->json([
-            "status"=>"success",
-            "allNote"=>$allNotes
+            "status" => "success",
+            "allNote" => $allNotes
         ]);
     }
+
 
     public function store(Request $request)
 {

@@ -17,7 +17,11 @@
 
             </div>
             <hr>
-
+                <div class="row p-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="searchByTile" aria-describedby="emailHelp" placeholder="Search By Title">
+                    </div>
+                </div>
                 <div class="row" id="noteContainer">
 
 

@@ -1,5 +1,3 @@
-
-//  $(document).ready(function() {
     $("#AddNoteButton").click(function(){
         $("#addNoteModal").modal('show');
         $("#title").val('');
@@ -11,47 +9,65 @@
 
     })
 
+    //dynamic table start here
+    const showAllNote=(data)=>{
+        let container = $('#noteContainer');
+        container.empty();
+
+        if (data.length === 0) {
+            container.append('<div class="col-12"><p>No notes found.</p></div>');
+            return;
+        }
+
+        $.each(data, function(index, note) {
+            let cardHtml = `
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 g-1 pb-2">
+                    <div class="card shadow-md">
+                        <div class="card-header">
+                            <h5 class="card-title">${note.title}</h5>
+                            <span class="d-block">Creation Date: ${formatDate(note.created_at)}</span>
+                            <span>Last Modified Date :${formatDate(note.updated_at)}</span>
+
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">${note.description}</p>
+                        </div>
+                        <div class="card-footer" >
+                        <button onClick="editNote(event)" value="${note.id}" class="btn btn-success btn-sm">Edit</button>
+                        <button class="btn btn-success btn-sm" onClick="deleteNote(event)" value="${note.id}">Delete</button>
+
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.append(cardHtml);
+        });
+    }
+    //dynamic table end here
+
+
+    // #5a6779
+
+    //dynamic formateDate start here
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         return date.toLocaleDateString('en-GB', options);
     };
+    //dynamic formateDate end here
 
+
+    //get all note start here
     const getAllNote = () => {
         $.ajax({
             url: "/get/note",
             type: "GET",
             success: function (response) {
-                console.log("submit form data == : ", response);
+                // console.log("Get All Note  == : ", response);
 
                 if (response.status === "success") {
-                    let container = $('#noteContainer');
-                    container.empty();
-
-                    $.each(response.allNote, function(index, note) {
-                        let cardHtml = `
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 g-1 pb-2">
-                                <div class="card shadow-md">
-                                    <div class="card-header">
-                                        <h5 class="card-title">${note.title}</h5>
-                                        <span class="d-block">Creation Date: ${formatDate(note.created_at)}</span>
-                                        <span>Last Modified Date :${formatDate(note.updated_at)}</span>
-
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">${note.description}</p>
-                                    </div>
-                                    <div class="card-footer" >
-                                    <button onClick="editNote(event)" value="${note.id}" class="btn btn-success btn-sm">Edit</button>
-                                    <button class="btn btn-success btn-sm" onClick="deleteNote(event)" value="${note.id}">Delete</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-
-                        container.append(cardHtml);
-                    });
+                    showAllNote(response.allNote);
                 }
             },
             error: function (xhr, status, error) {
@@ -61,8 +77,12 @@
             }
         });
     };
+    //get all note end here
 
+    //call getAllNote() for showing the dynamic note
     getAllNote();
+
+    //add note start here
 
     $("#addNoteBtn").click(function(){
         let title = $("#title").val();
@@ -110,12 +130,11 @@
         });
     });
 
+    //add note end here
 
 
+//edit note start here
 
-
-
-// });
 function editNote(event) {
     event.preventDefault();
     $("#editNoteModal").modal('show');
@@ -144,7 +163,11 @@ function editNote(event) {
 
 
 }
+//edit note end here
 
+
+
+//update note start here
 
 $("#updateNoteBtn").click(function(event){
     event.preventDefault();
@@ -198,6 +221,11 @@ $("#updateNoteBtn").click(function(event){
 
 
 })
+//delete note end here
+
+
+
+//delete note start here
 
 function deleteNote(event){
     event.preventDefault();
@@ -234,5 +262,34 @@ function deleteNote(event){
       });
 
 }
+//delete note end here
+
+
+
+//search by note title start here
+$("#searchByTile").on("input", function(event) {
+    let searchValue = event.target.value;
+
+    $.ajax({
+        url: "/get/note",
+        type: "GET",
+        data: {searchValue },
+        success: function (response) {
+            // console.log("Get All Note  == : ", response);
+
+            if (response.status === "success"){
+                showAllNote(response.allNote);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: ", error);
+            var response = JSON.parse(xhr.responseText);
+            console.log("Error Message: ", response.message);
+        }
+    });
+
+});
+//search by note title end here
+
 
 

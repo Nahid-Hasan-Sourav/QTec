@@ -14,7 +14,7 @@
 
   <div class="sl-sideleft-menu">
 
-     <a href="{{ route('notes') }}" class="sl-menu-link ">
+     <a href="{{ route('notes') }}" class="sl-menu-link {{ request()->is('note*') ? 'active' : '' }} ">
         <div class="sl-menu-item">
           <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
           <span class="menu-item-label">Notes</span>
