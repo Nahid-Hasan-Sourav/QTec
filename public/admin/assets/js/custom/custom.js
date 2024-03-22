@@ -47,7 +47,7 @@
     //dynamic table end here
 
 
-    // #5a6779
+    
 
     //dynamic formateDate start here
     const formatDate = (dateString) => {
@@ -152,7 +152,8 @@ function editNote(event) {
                 $("#titleE").val(response.note.title);
                 $("#descriptionE").text(response.note.description);
 
-                console.log("Note title:", response.note.title);            }
+                console.log("Note title:", response.note.title);
+            }
         },
         error: function (xhr, status, error) {
             console.log("Error: ", error);

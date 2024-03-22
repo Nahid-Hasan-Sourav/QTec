@@ -1,13 +1,12 @@
-<div class="sl-logo"><a href="">DASHBOARD</a></div>
+<div class="sl-logo"><a href="{{ route('dashboard') }}">DASHBOARD</a></div>
 <div class="sl-sideleft">
-  <div class="card">
+  <div class="card mb-4">
     <div class="">
         <div class="">
-            <div class="text-center">
-                <img src="{{asset('/')}}admin/assets/img/img9.jpg" class="" alt="..." style="width:100px;border-radius:50%;height:100px;">
+            <div class="">
+                <h4>Hello...</h4>
               </div>
-            <h5>Name : Xavi</h5>
-            <h5>Role</h5>
+            <h5>I'M, {{ auth()->user()->name }}</h5>
         </div>
     </div>
   </div>
@@ -16,8 +15,15 @@
 
      <a href="{{ route('notes') }}" class="sl-menu-link {{ request()->is('note*') ? 'active' : '' }} ">
         <div class="sl-menu-item">
-          <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+          <i class="menu-item-icon fa-solid fa-note tx-22"></i>
           <span class="menu-item-label">Notes</span>
+        </div>
+      </a>
+      <a href="{{ route('home') }}" class="sl-menu-link">
+        <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+
+          <span class="menu-item-label">Home</span>
         </div>
       </a>
 

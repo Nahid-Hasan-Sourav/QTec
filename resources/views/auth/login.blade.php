@@ -71,6 +71,7 @@
                         </div>
                         <div class="mb-3">
                             <input name="password" type="password" class="form-control" id="password" placeholder="password">
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-color px-5 mb-1 w-100 btn-success text-uppercase fw-bold">Login</button>
