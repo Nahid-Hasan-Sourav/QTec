@@ -1,4 +1,5 @@
-#TASK: Simple Note-taking App
+# TASK: Simple Note-taking App
+
 <hr>
 
 
@@ -8,7 +9,9 @@
 - View existing notes
 - Edit notes
 - Delete notes
+
 <hr>
+
 ## Installation
 Follow the steps below to set up the project locally:
 - Clone the repo: git clone https://github.com/Nahid-Hasan-Sourav/QTec.git
