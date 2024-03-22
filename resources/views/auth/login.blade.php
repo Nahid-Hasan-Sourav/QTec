@@ -76,9 +76,7 @@
                         <div class="text-center">
                             <button type="submit" class="btn btn-color px-5 mb-1 w-100 btn-success text-uppercase fw-bold">Login</button>
                         </div>
-                        <small class="text-danger">
-                            {{Session::get('message') }}
-                        </small>
+                        
                         <div id="emailHelp" class="form-text text-center mb-2 text-dark">Don't have an account? <a href="{{route('register')}}" class="text-dark fw-bold"> Create an
                                 Account</a>
                         </div>
