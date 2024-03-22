@@ -2,6 +2,11 @@
 
 <hr>
 
+## Project Video Link
+
+You can watch the project video [here](https://drive.google.com/drive/folders/1R_OhZiVAS3Vv0jlzEhn4datzD8B6h8BY?usp=sharing).
+
+<hr>
 
 ## Features
 - user authentication(register,login,logout)
@@ -27,7 +32,5 @@ Follow the steps below to set up the project locally:
 - Run php artisan serve command
 
 
-## Project Video Link
 
-You can watch the project video [here](https://drive.google.com/drive/folders/1R_OhZiVAS3Vv0jlzEhn4datzD8B6h8BY?usp=sharing).
 
